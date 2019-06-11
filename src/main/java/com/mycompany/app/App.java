@@ -11,7 +11,7 @@ public class App
     public App() {}
 
     public static void main(String[] args) {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000));
+        HttpServer server = HttpServer.create(new InetSocketAddress(8001), new Integer(100));
         server.createContext("/applications/myapp", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
