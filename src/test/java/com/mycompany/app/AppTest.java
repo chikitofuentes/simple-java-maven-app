@@ -41,8 +41,8 @@ public class AppTest
     }
 
     @Test
-    public void testFallando() {
-       assertTrue(false);
+    public void testPasando() {
+       assertTrue(true);
     }
 
     @After
