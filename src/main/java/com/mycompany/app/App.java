@@ -1,17 +1,32 @@
 package com.mycompany.app;
 
+import com.sun.net.httpserver.HttpServer;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+
 /**
  * Hello world!
  */
-public class App
-{
+public class App {
 
     private final String message = "Hello World!";
 
-    public App() {}
+    public App() {
+    }
 
     public static void main(String[] args) {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8001), new Integer(100));
+        System.out.println(new App().getMessage());
+
+        HttpServer server = null;
+
+        {
+            try {
+                server = HttpServer.create(new InetSocketAddress(8001), 8001);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         server.createContext("/applications/myapp", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
@@ -20,5 +35,4 @@ public class App
     private final String getMessage() {
         return message;
     }
-
 }
